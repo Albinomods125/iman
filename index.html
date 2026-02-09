@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iman Social</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="auth-screen" class="overlay active">
+        <div class="auth-card">
+            <h1 id="auth-title">Bem-vindo ao Iman</h1>
+            <div id="auth-inputs">
+                <input type="text" id="reg-name" placeholder="Nome completo" class="hidden">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="password" id="password" placeholder="Senha">
+            </div>
+            <button class="btn-main" onclick="auth.submit()">Continuar</button>
+            <p onclick="auth.toggleMode()" id="auth-switch">Não tem conta? Cadastre-se</p>
+        </div>
+    </div>
+
+    <div id="app-screen" class="hidden">
+        <header class="main-header">
+            <div class="header-user" onclick="nav.to('profile')">
+                <img id="hdr-avatar" src="" alt="Avatar">
+            </div>
+            <div class="logo">IMAN</div>
+            <button class="btn-icon" onclick="auth.logout()"><i class="fas fa-sign-out-alt"></i></button>
+        </header>
+
+        <nav class="feed-nav">
+            <button id="tab-global" class="active" onclick="app.setFeed('global')">Para Você</button>
+            <button id="tab-following" onclick="app.setFeed('following')">Seguindo</button>
+        </nav>
+
+        <main id="content">
+            <section id="page-home" class="page active">
+                <div class="composer">
+                    <textarea id="post-input" placeholder="O que você está pensando?"></textarea>
+                    <div class="composer-actions">
+                        <button class="btn-post" onclick="app.createPost()">Postar</button>
+                    </div>
+                </div>
+                <div id="feed-container"></div>
+            </section>
+
+            <section id="page-profile" class="page">
+                <div id="profile-header"></div>
+                <div id="profile-posts"></div>
+            </section>
+        </main>
+
+        <footer class="bottom-bar">
+            <button onclick="nav.to('home')"><i class="fas fa-home"></i></button>
+            <button onclick="app.setFeed('global')"><i class="fas fa-search"></i></button>
+            <button onclick="nav.to('profile')"><i class="fas fa-user"></i></button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
